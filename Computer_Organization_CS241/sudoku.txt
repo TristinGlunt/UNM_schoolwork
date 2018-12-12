@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+char sudokuArray[9][9];
+int lineCount = 0;
+
+char checkStringInput()
+{
+    char c;
+    int i, j;
+    
+    c = '0';
+    
+    while(c != '\n' && c != EOF)
+    {
+        c = getchar();
+        for(i = 0; i < 9; i++)
+        {
+            for(j = 0; j < 9; j++)
+            {
+                if(c != '.')
+                {
+                    sudokuArray[i][j] = c;
+                    lineCount++;
+                }
+                else
+                {
+                    sudokuArray[i][j] = '.';
+                    lineCount++;
+                }
+            }
+        }
+        
+        if(lineCount > 81 || lineCount < 81)
+        {
+            return '0';
+        }
+        else { return '1';}
+    }
+}
+
+
+int main()
+{
+    if(checkStringInput() == '0') 
+    {
+        printf("There was an error");
+    } 
+    else 
+    {
+        int i;
+        for(i = 0; i <= 81; i++)
+            printf("%c", sudokuArray[i]);
+    }
+}
